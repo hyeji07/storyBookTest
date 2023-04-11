@@ -11,20 +11,21 @@ defaults:
     working-directory: buoy-workspace
 
 jobs:
-  chromatic-deployment:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Install dependencies and build
-        run: |
-          npm ci
-          npm run build-buoy
-      - name: Publish to Chromatic
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Deploy with Chromatic
         uses: chromaui/action@v1
-        with:
-          workingDir: buoy-workspace
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          exitZeroOnChanges: true
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          CHROMATIC_APP_CODE: ${{ secrets.CHROMATIC_APP_CODE }}
