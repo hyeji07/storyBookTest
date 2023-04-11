@@ -1,21 +1,17 @@
-name: Build and Deploy Storybook
+# Workflow name
+name: 'Chromatic Deployment'
 
 on:
   push:
     branches: [main]
-  workflow_dispatch:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Install Dependencies
-        run: npm install
-      - name: Build Storybook
-        run: npm run build-storybook
-      - name: Deploy Storybook
-        uses: chromaui/action@v1
+      - uses: actions/checkout@v1
+      - run: npm
+      - uses: chromaui/action@v1
         with:
-          token: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.TOKEN }}
