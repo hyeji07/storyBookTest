@@ -64,7 +64,7 @@ MainBtn.args = {
 
 export const MainsBtn = Template.bind({});
 MainBtn.args = {
-  label: 'Main Btn',
-  backgroundColor: 'brown',
+  label: 'Mains Btn',
+  backgroundColor: 'gray',
   size: 'md',
 };
