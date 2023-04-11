@@ -54,3 +54,10 @@ LgBtn.args = {
   size: 'lg',
   color: 'white',
 };
+
+export const MainBtn = Template.bind({});
+MainBtn.args = {
+  label: 'Main Btn',
+  backgroundColor: 'brown',
+  size: 'md',
+};
