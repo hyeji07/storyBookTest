@@ -1,19 +1,30 @@
 # Workflow name
-name: 'Chromatic Deployment'
+name: 'Chromatic Dev'
 
 on:
-push:
-  branches:
-    - main
+  push:
+    branches:
+      - main
+
+defaults:
+  run:
+    working-directory: buoy-workspace
 
 jobs:
-  test:
+  chromatic-deployment:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - run: |
-          npm ci
-      - uses: chromaui/action@v1
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
+          fetch-depth: 0
+      - name: Install dependencies and build
+        run: |
+          npm ci
+          npm run build-buoy
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
+        with:
+          workingDir: buoy-workspace
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          exitZeroOnChanges: true
