@@ -26,3 +26,4 @@ jobs:
           #👇 Chromatic projectToken,
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
+# 깃허브 push 시 자동 chromatic배포 하려다 안돼서 중단
