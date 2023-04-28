@@ -14,8 +14,8 @@ import type { Meta, StoryFn } from '@storybook/react';
 /* export default meta; */
 
 export default {
-  title: 'Button',
-  component: Button,
+  title: 'Button', //스토리북 앱의 사이드바에서 컴포넌트를 참조하는 방법
+  component: Button, //해당 컴포넌트
   argTypes: { handleClick: { action: 'clicked' } },
 } as Meta;
 /* 
